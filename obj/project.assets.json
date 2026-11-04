@@ -595,19 +595,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\PedroSilva\\.nuget\\packages\\": {}
+    "C:\\Users\\KleberInacio\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\PedroSilva\\Documents\\GitHub\\Projeto-Embrapa-C-Sharp\\Projeto-Embrapa-C-Sharp.csproj",
+      "projectUniqueName": "C:\\Users\\KleberInacio\\Desktop\\Projeto-Embrapa-C-Sharp\\Projeto-Embrapa-C-Sharp.csproj",
       "projectName": "Projeto-Embrapa-C-Sharp",
-      "projectPath": "C:\\Users\\PedroSilva\\Documents\\GitHub\\Projeto-Embrapa-C-Sharp\\Projeto-Embrapa-C-Sharp.csproj",
-      "packagesPath": "C:\\Users\\PedroSilva\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\PedroSilva\\Documents\\GitHub\\Projeto-Embrapa-C-Sharp\\obj\\",
+      "projectPath": "C:\\Users\\KleberInacio\\Desktop\\Projeto-Embrapa-C-Sharp\\Projeto-Embrapa-C-Sharp.csproj",
+      "packagesPath": "C:\\Users\\KleberInacio\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\KleberInacio\\Desktop\\Projeto-Embrapa-C-Sharp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\PedroSilva\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\KleberInacio\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

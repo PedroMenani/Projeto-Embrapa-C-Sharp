@@ -229,11 +229,119 @@ static void MenuPrincipal(UsuarioRepositorio repo)
 
 
 //PESQUISADOR
+ 
+static void CriarAcao(int matriculaPesquisador)
+{
+    Console.Clear();
+    Console.WriteLine("=== CRIAR AÇÃO ===\n");
+    string titulo = Ler("Nome da ação: ");
+    string categoria = Ler("Categoria da ação: ");
+    string descricao = Ler("Descrição: ");
+    string data = Ler("Data de realização (DD-MM-AAAA): ");
+    string comprovante = Ler("Tipo de comprovante: ");
+    string local = Ler("Local: ");
 
-    // static void CriarAcao
+    if (!DateTime.TryParse(data, out DateTime dataRealizacao))
+    {
+        Console.WriteLine("Data inválida!");
+        Pausar();
+        return;
+    }
 
-    // static void MostrarAcao
+    if (string.IsNullOrWhiteSpace(titulo) ||
+        string.IsNullOrWhiteSpace(categoria) ||
+        string.IsNullOrWhiteSpace(descricao) ||
+        string.IsNullOrWhiteSpace(comprovante) ||
+        string.IsNullOrWhiteSpace(local))
+    {
+        Console.WriteLine("Preencha todos os campos!");
+        Pausar();
+        return;
+    }
 
+    using var con = new Conexao().Criar();
+    con.Open();
+
+    string sql = @" INSERT INTO postagem
+        (titulo, categoria, descricao, data_realizacao, tipo_comprovante, local, data_hora, status, matricula_pesquisador) VALUES (@titulo, @categoria, @descricao, @data_realizacao, @comprovante, @local, @data_hora, @status, @matricula); 
+        SELECT LAST_INSERT_ID();";
+
+    using var cmd = new MySqlCommand(sql, con);
+
+    cmd.Parameters.AddWithValue("@titulo", titulo);
+    cmd.Parameters.AddWithValue("@categoria", categoria);
+    cmd.Parameters.AddWithValue("@descricao", descricao);
+    cmd.Parameters.AddWithValue("@data_realizacao", dataRealizacao);
+    cmd.Parameters.AddWithValue("@comprovante", comprovante);
+    cmd.Parameters.AddWithValue("@local", local);
+    cmd.Parameters.AddWithValue("@data_hora", DateTime.Now);
+    cmd.Parameters.AddWithValue("@status", "Em análise");
+    cmd.Parameters.AddWithValue("@matricula", matriculaPesquisador);
+
+    int id = Convert.ToInt32(cmd.ExecuteScalar());
+
+    Console.WriteLine("\nAção cadastrada com sucesso!");
+    Console.WriteLine($"ID da ação: {id}");
+    Console.WriteLine("Status: Em análise");
+
+    Pausar();
+}
+
+
+static void MostrarAcao(int matriculaPesquisador)
+{
+    while (true)
+    {
+        Console.Clear();
+        Console.WriteLine("=== MINHAS AÇÕES ===\n");
+
+        if (!int.TryParse(Ler("Digite o ID da ação (0 para sair): "), out int id))
+        {
+            Console.WriteLine("ID inválido!");
+            Pausar();
+            continue;
+        }
+
+        if (id == 0)
+            return;
+
+        using var con = new Conexao().Criar();
+        con.Open();
+
+        string sql = @"SELECT id, titulo, categoria, descricao, data_realizacao, tipo_comprovante, local, status FROM postagem WHERE id = @id AND matricula_pesquisador = @matricula;";
+
+        using var cmd = new MySqlCommand(sql, con);
+
+        cmd.Parameters.AddWithValue("@id", id);
+        cmd.Parameters.AddWithValue("@matricula", matriculaPesquisador);
+
+        using var leitor = cmd.ExecuteReader();
+
+        if (leitor.Read())
+        {
+            Console.WriteLine("\n=== INFORMAÇÕES DA AÇÃO ===\n");
+            Console.WriteLine($"ID: {leitor["id"]}");
+            Console.WriteLine($"Nome: {leitor["titulo"]}");
+            Console.WriteLine($"Categoria: {leitor["categoria"]}");
+            Console.WriteLine($"Descrição: {leitor["descricao"]}");
+            Console.WriteLine($"Data de realização: {Convert.ToDateTime(leitor["data_realizacao"]):dd/MM/yyyy}");
+            Console.WriteLine($"Comprovante: {leitor["tipo_comprovante"]}");
+            Console.WriteLine($"Local: {leitor["local"]}");
+            Console.WriteLine($"Status: {leitor["status"]}");
+        }
+        else
+        {
+            Console.WriteLine("\nAção não encontrada!");
+        }
+
+        leitor.Close();
+        Console.WriteLine("\nPressione ENTER para continuar.");
+        Console.WriteLine("Digite 0 para sair.");
+
+        if (Console.ReadLine()?.Trim() == "0")
+            return;
+    }
+}
 
 //VALIDADOR
 
