@@ -34,3 +34,4 @@ C:\Users\PedroSilva\Documents\GitHub\Projeto-Embrapa-C-Sharp\obj\Debug\net9.0\re
 C:\Users\PedroSilva\Documents\GitHub\Projeto-Embrapa-C-Sharp\obj\Debug\net9.0\Projeto-Embrapa-C-Sharp.pdb
 C:\Users\PedroSilva\Documents\GitHub\Projeto-Embrapa-C-Sharp\obj\Debug\net9.0\Projeto-Embrapa-C-Sharp.genruntimeconfig.cache
 C:\Users\PedroSilva\Documents\GitHub\Projeto-Embrapa-C-Sharp\obj\Debug\net9.0\ref\Projeto-Embrapa-C-Sharp.dll
+C:\Users\PedroSilva\Documents\GitHub\Projeto-Embrapa-C-Sharp\obj\Debug\net9.0\Projeto-Embrapa-C-Sharp.sourcelink.json
